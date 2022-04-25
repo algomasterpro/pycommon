@@ -2,7 +2,6 @@ import os
 from functools import wraps
 from flask import request
 import jwt
-
 from ..libs.apierror import UnauthorizedError, APIErrors, ForbiddenError
 
 def token_required():
