@@ -37,14 +37,15 @@ def perm_check(roles):
         @wraps(fn)
         def decorator(*args, **kwargs):
             currentuser = request.currentuser
+            print(currentuser)
             if not currentuser:
                 raise UnauthorizedError('Token is missing !!')
 
             try:
-                  # decoding the payload to fetch the stored details
-                if currentuser["role"] in roles is False:
-                    raise ForbiddenError('You are not authorized to access this route')
-                return fn(*args, **kwargs)
+                # decoding the payload to fetch the stored details
+                if currentuser["role"] in roles:
+                    return fn(*args, **kwargs)
+                raise ForbiddenError('You are not authorized to access this route')
             except Exception as e:
                 if isinstance(e, APIErrors):
                     raise e 
