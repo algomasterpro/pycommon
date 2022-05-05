@@ -4,7 +4,7 @@ import time
 import json
 import logging
 import calendar
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 import math
 import random
 from bson import json_util
@@ -26,31 +26,20 @@ class Utils:
   dateTimeFormat = "%Y-%m-%d %H:%M:%S"
 
   @staticmethod
+  def isTodayGreaterThanDate(existingDate: date):
+    today = date.today()
+
+    if (today > existingDate):
+      return True
+    return False
+
+  @staticmethod
   def parse_json(data):
     return json.loads(json_util.dumps(data))
   
   @staticmethod
   def generate_random_number() -> int:
       return random.randint(100000, 999999)
-  # @staticmethod
-  # def generate_random_number(digitscount=6) -> int:
-  #     ## storing strings in a list
-  #     digits = [i for i in range(0, 10)]
-      
-  #     ## initializing a string
-  #     random_str = ""
-      
-  #     ## we can generate any lenght of string we want
-  #     for i in range(digitscount):
-  #         ## generating a random index
-  #         ## if we multiply with 10 it will generate a number between 0 and 10 not including 10
-  #         ## multiply the random.random() with length of your base list or str
-  #         index = math.floor(random.random() * 10)
-          
-  #         random_str += str(digits[index])
-      
-  #     ## displaying the random string
-  #     return int(random_str)
 
   @staticmethod
   def roundOff(price): # Round off to 2 decimal places
